@@ -25,4 +25,6 @@ public class Restaurante {
         this.idPropietario = idPropietario;
     }
 
+    public Restaurante(){}
+
 }
