@@ -3,7 +3,6 @@ package com.plazoleta.plazoleta_service.application.service;
 import org.springframework.stereotype.Service;
 
 import com.plazoleta.plazoleta_service.domain.exception.NoEsPropietarioException;
-import com.plazoleta.plazoleta_service.domain.exception.PrecioInvalidoException;
 import com.plazoleta.plazoleta_service.domain.exception.RestauranteNoExisteException;
 import com.plazoleta.plazoleta_service.domain.model.Plato;
 import com.plazoleta.plazoleta_service.domain.model.Restaurante;
@@ -22,6 +21,7 @@ public class CrearPlatoService implements ICrearPlatoUseCase{
 
     @Override
     public void crearPlato(Plato plato, Integer idPropietario) {
+        plato.validarReglasDeCreacion();
 
         Restaurante restaurante = restauranteRepositoryPort
                 .buscarPorId(plato.getIdRestaurante())
@@ -31,10 +31,6 @@ public class CrearPlatoService implements ICrearPlatoUseCase{
             throw new NoEsPropietarioException();
         }
 
-        if (plato.getPrecio() <= 0) {
-            throw new PrecioInvalidoException();
-        }
-        System.out.println("NOMBRE PLATO A GUARDAR: "+plato.getNombre());
         platoRepositoryPort.guardar(plato);
     }
     

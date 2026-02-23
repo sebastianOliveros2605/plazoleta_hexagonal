@@ -4,6 +4,7 @@ import java.security.Key;
 import java.util.Date;
 import java.util.function.Function;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.Claims;
@@ -14,7 +15,11 @@ import io.jsonwebtoken.security.Keys;
 @Service
 public class JwtService {
 
-    private final String SECRET_KEY = "proyecto_pragma_plazoleta_firma_token";
+    private final String secretKey;
+
+    public JwtService(@Value("${security.jwt.secret}") String secretKey) {
+        this.secretKey = secretKey;
+    }
 
 
     public String extractUsername(String token) {
@@ -22,7 +27,7 @@ public class JwtService {
     }
 
     private Key getSignInKey() {
-        byte[] keyBytes = SECRET_KEY.getBytes();
+        byte[] keyBytes = secretKey.getBytes();
         return Keys.hmacShaKeyFor(keyBytes);
     }
 

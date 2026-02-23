@@ -39,7 +39,9 @@ class CrearRestauranteServiceTest {
         restaurante.setIdPropietario(5);
         restaurante.setNombre("Restaurante 1");
         restaurante.setNit("123456");
+        restaurante.setDireccion("Calle 123");
         restaurante.setTelefono("3001234567");
+        restaurante.setUrlLogo("https://logo.test/rest.png");
 
         when(usuarioClientPort.existeUsuario(5)).thenReturn(true);
         when(usuarioClientPort.rolUsuarioString(5)).thenReturn("PROPIETARIO");
@@ -54,6 +56,11 @@ class CrearRestauranteServiceTest {
 
         Restaurante restaurante = new Restaurante();
         restaurante.setIdPropietario(5);
+        restaurante.setNombre("Restaurante 1");
+        restaurante.setNit("123456");
+        restaurante.setDireccion("Calle 123");
+        restaurante.setTelefono("3001234567");
+        restaurante.setUrlLogo("https://logo.test/rest.png");
 
         when(usuarioClientPort.existeUsuario(5)).thenReturn(false);
 
@@ -68,6 +75,11 @@ class CrearRestauranteServiceTest {
 
         Restaurante restaurante = new Restaurante();
         restaurante.setIdPropietario(5);
+        restaurante.setNombre("Restaurante 1");
+        restaurante.setNit("123456");
+        restaurante.setDireccion("Calle 123");
+        restaurante.setTelefono("3001234567");
+        restaurante.setUrlLogo("https://logo.test/rest.png");
 
         when(usuarioClientPort.existeUsuario(5)).thenReturn(true);
         when(usuarioClientPort.rolUsuarioString(5)).thenReturn("ADMIN");

@@ -4,11 +4,10 @@ import org.springframework.stereotype.Service;
 
 import com.plazoleta.plazoleta_service.domain.exception.NoEsPropietarioException;
 import com.plazoleta.plazoleta_service.domain.exception.PlatoNoExisteException;
-import com.plazoleta.plazoleta_service.domain.exception.PrecioInvalidoException;
 import com.plazoleta.plazoleta_service.domain.exception.RestauranteNoExisteException;
 import com.plazoleta.plazoleta_service.domain.model.Plato;
 import com.plazoleta.plazoleta_service.domain.model.Restaurante;
-import com.plazoleta.plazoleta_service.domain.ports.out.IModificarPlatoUseCase;
+import com.plazoleta.plazoleta_service.domain.ports.in.IModificarPlatoUseCase;
 import com.plazoleta.plazoleta_service.domain.ports.out.IPlatoRepositoryPort;
 import com.plazoleta.plazoleta_service.domain.ports.out.IRestauranteRepositoryPort;
 
@@ -36,15 +35,7 @@ public class ModificarPlatoService implements IModificarPlatoUseCase {
             throw new NoEsPropietarioException();
         }
 
-        if (platoModificado.getPrecio() <= 0) {
-            throw new PrecioInvalidoException();
-        }
-
-        plato.setNombre(platoModificado.getNombre());
-        plato.setDescripcion(platoModificado.getDescripcion());
-        plato.setPrecio(platoModificado.getPrecio());
-        plato.setCategoria(platoModificado.getCategoria());
-        System.out.println("ID DEL PLATO A MODIFICAR: "+plato.getId());
+        plato.actualizarPrecioYDescripcion(platoModificado.getDescripcion(), platoModificado.getPrecio());
         platoRepositoryPort.guardar(plato);
     }
 }

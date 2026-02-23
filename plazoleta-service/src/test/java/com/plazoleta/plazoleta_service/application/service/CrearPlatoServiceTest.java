@@ -32,8 +32,12 @@ class CrearPlatoServiceTest {
     void crearPlato_CuandoDatosValidos_DeberiaGuardar() {
         // Arrange
         Plato plato = new Plato();
+        plato.setNombre("Bandeja Paisa");
+        plato.setDescripcion("Plato tradicional");
         plato.setIdRestaurante(1L);
         plato.setPrecio(100);
+        plato.setUrlImagen("https://img.test/plato.png");
+        plato.setCategoria(com.plazoleta.plazoleta_service.domain.model.CategoriaPlatoEnum.PLATO_FUERTE);
 
         Restaurante restaurante = new Restaurante();
         restaurante.setIdPropietario(5);
@@ -54,7 +58,12 @@ class CrearPlatoServiceTest {
             .thenReturn(Optional.empty());
 
         Plato plato = new Plato();
+        plato.setNombre("Bandeja Paisa");
+        plato.setDescripcion("Plato tradicional");
         plato.setIdRestaurante(1L);
+        plato.setPrecio(100);
+        plato.setUrlImagen("https://img.test/plato.png");
+        plato.setCategoria(com.plazoleta.plazoleta_service.domain.model.CategoriaPlatoEnum.PLATO_FUERTE);
 
         assertThrows(RestauranteNoExisteException.class,
             () -> crearPlatoService.crearPlato(plato, 5));
@@ -69,8 +78,12 @@ class CrearPlatoServiceTest {
             .thenReturn(Optional.of(restaurante));
 
         Plato plato = new Plato();
+        plato.setNombre("Bandeja Paisa");
+        plato.setDescripcion("Plato tradicional");
         plato.setPrecio(100);
         plato.setIdRestaurante(1L);
+        plato.setUrlImagen("https://img.test/plato.png");
+        plato.setCategoria(com.plazoleta.plazoleta_service.domain.model.CategoriaPlatoEnum.PLATO_FUERTE);
 
         assertThrows(NoEsPropietarioException.class,
             () -> crearPlatoService.crearPlato(plato, 5));
@@ -78,15 +91,13 @@ class CrearPlatoServiceTest {
 
     @Test
     void crearPlato_SiPrecioInvalido_DebeLanzarExcepcion() {
-        Restaurante restaurante = new Restaurante();
-        restaurante.setIdPropietario(5);
-
-        when(restauranteRepositoryPort.buscarPorId(1L))
-            .thenReturn(Optional.of(restaurante));
-
         Plato plato = new Plato();
+        plato.setNombre("Bandeja Paisa");
+        plato.setDescripcion("Plato tradicional");
         plato.setIdRestaurante(1L);
         plato.setPrecio(0);
+        plato.setUrlImagen("https://img.test/plato.png");
+        plato.setCategoria(com.plazoleta.plazoleta_service.domain.model.CategoriaPlatoEnum.PLATO_FUERTE);
 
         assertThrows(PrecioInvalidoException.class,
             () -> crearPlatoService.crearPlato(plato, 5));

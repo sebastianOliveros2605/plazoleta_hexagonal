@@ -37,6 +37,7 @@ class ModificarPlatoServiceTest {
         Plato modificado = new Plato();
         modificado.setId(1L);
         modificado.setIdRestaurante(2L);
+        modificado.setDescripcion("Nueva descripcion");
         modificado.setPrecio(100);
 
         Restaurante restaurante = new Restaurante();
@@ -105,6 +106,7 @@ class ModificarPlatoServiceTest {
         Plato modificado = new Plato();
         modificado.setId(1L);
         modificado.setIdRestaurante(2L);
+        modificado.setDescripcion("Nueva descripcion");
         modificado.setPrecio(0);
 
         when(platoRepositoryPort.buscarPorId(1L))

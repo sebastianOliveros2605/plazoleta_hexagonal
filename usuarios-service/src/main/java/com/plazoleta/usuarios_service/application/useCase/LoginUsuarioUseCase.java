@@ -1,40 +1,32 @@
 package com.plazoleta.usuarios_service.application.useCase;
 
-import com.plazoleta.usuarios_service.infrastructure.input.rest.dto.LoginRequest;
-import com.plazoleta.usuarios_service.infrastructure.input.rest.dto.LoginResponse;
-import com.plazoleta.usuarios_service.infrastructure.security.JwtService;
-
-import lombok.RequiredArgsConstructor;
-
+import com.plazoleta.usuarios_service.application.dto.LoginCommand;
+import com.plazoleta.usuarios_service.application.dto.LoginResult;
+import com.plazoleta.usuarios_service.domain.exception.CredencialesInvalidasException;
+import com.plazoleta.usuarios_service.domain.exception.UsuarioNoEncontradoException;
 import com.plazoleta.usuarios_service.domain.model.Usuario;
-
 import com.plazoleta.usuarios_service.domain.puertosIn.IPasswordEncoderPort;
-
 import com.plazoleta.usuarios_service.domain.puertosIn.IUsuarioPersistencePort;
 
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class LoginUsuarioUseCase {
 
     private final IUsuarioPersistencePort usuarioPersistencePort;
     private final IPasswordEncoderPort passwordEncoderPort;
-    private final JwtService jwtService;
 
-    public LoginResponse login(LoginRequest request) {
-
+    public LoginResult login(LoginCommand request) {
         Usuario usuario = usuarioPersistencePort.findByCorreo(request.correo())
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+                .orElseThrow(UsuarioNoEncontradoException::new);
 
         if (!passwordEncoderPort.matches(request.password(), usuario.getPassword())) {
-            throw new RuntimeException("Credenciales inválidas");
+            throw new CredencialesInvalidasException();
         }
 
-        String token = jwtService.generateToken(
+        return new LoginResult(
                 usuario.getId(),
                 usuario.getCorreo(),
-                usuario.getRol().name()
-        );
-
-        return new LoginResponse(token);
+                usuario.getRol().getNombre());
     }
 }

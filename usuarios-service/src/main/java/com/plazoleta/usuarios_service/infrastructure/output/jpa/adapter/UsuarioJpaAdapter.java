@@ -2,24 +2,35 @@ package com.plazoleta.usuarios_service.infrastructure.output.jpa.adapter;
 
 import java.util.Optional;
 
+import com.plazoleta.usuarios_service.domain.exception.RolNoEncontradoException;
 import com.plazoleta.usuarios_service.domain.model.Usuario;
 import com.plazoleta.usuarios_service.domain.puertosIn.IUsuarioPersistencePort;
 import com.plazoleta.usuarios_service.infrastructure.output.jpa.mapper.UsuarioMapper;
+import com.plazoleta.usuarios_service.infrastructure.output.jpa.repository.RolJpaRepository;
 import com.plazoleta.usuarios_service.infrastructure.output.jpa.repository.UsuarioJpaRepository;
 
 public class UsuarioJpaAdapter implements IUsuarioPersistencePort {
 
     private final UsuarioJpaRepository usuarioJpaRepository;
+    private final RolJpaRepository rolJpaRepository;
+    private final UsuarioMapper usuarioMapper;
 
-    public UsuarioJpaAdapter(UsuarioJpaRepository usuarioJpaRepository) {
+    public UsuarioJpaAdapter(
+            UsuarioJpaRepository usuarioJpaRepository,
+            RolJpaRepository rolJpaRepository,
+            UsuarioMapper usuarioMapper) {
         this.usuarioJpaRepository = usuarioJpaRepository;
+        this.rolJpaRepository = rolJpaRepository;
+        this.usuarioMapper = usuarioMapper;
     }
 
     @Override
     public Usuario save(Usuario usuario) {
-        return UsuarioMapper.toDomain(
+        var rolEntity = rolJpaRepository.findById(usuario.getRol().getId())
+                .orElseThrow(() -> new RolNoEncontradoException(usuario.getRol().getId()));
+        return usuarioMapper.toDomain(
                 usuarioJpaRepository.save(
-                        UsuarioMapper.toEntity(usuario)
+                        usuarioMapper.toEntity(usuario, rolEntity)
                 )
         );
     }
@@ -28,7 +39,7 @@ public class UsuarioJpaAdapter implements IUsuarioPersistencePort {
     public Optional<Usuario> findByCorreo(String correo) {
         return usuarioJpaRepository
                 .findByCorreo(correo)
-                .map(UsuarioMapper::toDomain);
+                .map(usuarioMapper::toDomain);
     }
 
     @Override
@@ -39,6 +50,6 @@ public class UsuarioJpaAdapter implements IUsuarioPersistencePort {
     @Override
     public Optional<Usuario> findById(Integer idUsuario) {
         return usuarioJpaRepository.findById(idUsuario)
-            .map(UsuarioMapper::toDomain);
+            .map(usuarioMapper::toDomain);
     }
 }

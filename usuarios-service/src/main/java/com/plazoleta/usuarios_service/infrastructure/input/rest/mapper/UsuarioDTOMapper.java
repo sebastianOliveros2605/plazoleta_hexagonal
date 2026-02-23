@@ -1,46 +1,28 @@
 package com.plazoleta.usuarios_service.infrastructure.input.rest.mapper;
 
-import com.plazoleta.usuarios_service.domain.model.RolEnum;
+import com.plazoleta.usuarios_service.domain.model.Rol;
 import com.plazoleta.usuarios_service.domain.model.Usuario;
 import com.plazoleta.usuarios_service.infrastructure.input.rest.dto.UsuarioDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
 
-public class UsuarioDTOMapper {
-    public static Usuario toUsuarioDomain(UsuarioDTO request,int rol) {
+@Mapper(componentModel = "spring")
+public interface UsuarioDTOMapper {
+    @Mappings({
+            @Mapping(target = "id", ignore = true),
+            @Mapping(target = "nombre", source = "request.nombre"),
+            @Mapping(target = "apellido", source = "request.apellido"),
+            @Mapping(target = "documentoIdentidad", source = "request.documentoIdentidad"),
+            @Mapping(target = "celular", source = "request.celular"),
+            @Mapping(target = "fechaNacimiento", source = "request.fechaNacimiento"),
+            @Mapping(target = "correo", source = "request.correo"),
+            @Mapping(target = "password", source = "request.password"),
+            @Mapping(target = "idRestaurante", ignore = true),
+            @Mapping(target = "rol", source = "rol")
+    })
+    Usuario toUsuarioDomain(UsuarioDTO request, Rol rol);
 
-        Usuario usuario = new Usuario();
-        usuario.setNombre(request.getNombre());
-        usuario.setApellido(request.getApellido());
-        usuario.setDocumentoIdentidad(request.getDocumentoIdentidad());
-        usuario.setCelular(request.getCelular());
-        usuario.setFechaNacimiento(request.getFechaNacimiento());
-        usuario.setCorreo(request.getCorreo());
-        usuario.setPassword(request.getPassword());
-        switch(rol){
-            case 1:
-                usuario.setRol(RolEnum.ADMIN);
-                break;
-            case 2:
-                usuario.setRol(RolEnum.PROPIETARIO);
-                break;
-            case 3:
-                usuario.setRol(RolEnum.EMPLEADO);
-                break;
-            case 4:
-                usuario.setRol(RolEnum.CLIENTE);
-                break;
-        }
-        return usuario;
-    }
-
-    public static UsuarioDTO toDTO(Usuario usuario){
-        UsuarioDTO usuarioDTO = new UsuarioDTO();
-        usuarioDTO.setNombre(usuario.getNombre());
-        usuarioDTO.setApellido(usuario.getApellido());
-        usuarioDTO.setCorreo(usuario.getCorreo());
-        usuarioDTO.setCelular(usuario.getCelular());
-        usuarioDTO.setFechaNacimiento(usuario.getFechaNacimiento());
-        usuarioDTO.setRol(usuario.getRol().name());
-        return usuarioDTO; 
-
-    }
+    @Mapping(target = "rol", source = "rol.nombre")
+    UsuarioDTO toDTO(Usuario usuario);
 }

@@ -7,4 +7,5 @@ import com.plazoleta.plazoleta_service.domain.model.Restaurante;
 public interface IRestauranteRepositoryPort {
     Restaurante guardar(Restaurante restaurante);
     Optional<Restaurante> buscarPorId(Long idRestaurante);
+    Optional<Restaurante> buscarPorIdPropietario(Integer idPropietario);
 }

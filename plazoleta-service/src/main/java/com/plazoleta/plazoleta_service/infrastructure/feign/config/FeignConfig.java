@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.plazoleta.plazoleta_service.infrastructure.security.SecurityConstants;
+
 import feign.RequestInterceptor;
 
 @Configuration
@@ -17,9 +19,9 @@ public class FeignConfig {
                     (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
 
             if (attributes != null) {
-                String authHeader = attributes.getRequest().getHeader("Authorization");
+                String authHeader = attributes.getRequest().getHeader(SecurityConstants.ENCABEZADO_AUTORIZACION);
                 if (authHeader != null) {
-                    requestTemplate.header("Authorization", authHeader);
+                    requestTemplate.header(SecurityConstants.ENCABEZADO_AUTORIZACION, authHeader);
                 }
             }
         };

@@ -16,18 +16,25 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RestauranteRepositoryAdapter implements IRestauranteRepositoryPort {
     private final RestauranteJpaRepository jpaRepository;
+    private final RestauranteMapper restauranteMapper;
 
     @Override
     public Restaurante guardar(Restaurante restaurante) {
-        RestauranteEntity entity = RestauranteMapper.toEntity(restaurante);
+        RestauranteEntity entity = restauranteMapper.toEntity(restaurante);
         jpaRepository.save(entity);
-        return RestauranteMapper.toDomain(entity);
+        return restauranteMapper.toDomain(entity);
     }
 
     @Override
     public Optional<Restaurante> buscarPorId(Long idRestaurante) {
         return jpaRepository.findById(idRestaurante)
-                .map(RestauranteMapper::toDomain);
+                .map(restauranteMapper::toDomain);
+    }
+
+    @Override
+    public Optional<Restaurante> buscarPorIdPropietario(Integer idPropietario) {
+        return jpaRepository.findByIdPropietario(idPropietario)
+                .map(restauranteMapper::toDomain);
     }
 
 }

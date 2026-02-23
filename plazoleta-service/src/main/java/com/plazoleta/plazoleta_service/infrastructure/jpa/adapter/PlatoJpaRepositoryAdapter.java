@@ -17,18 +17,19 @@ import lombok.RequiredArgsConstructor;
 public class PlatoJpaRepositoryAdapter implements IPlatoRepositoryPort {
 
     private final IPlatoJpaRepository jpaRepository;
+    private final PlatoMapper platoMapper;
 
     @Override
     public Plato guardar(Plato plato) {
-        PlatoEntity entity = PlatoMapper.toEntity(plato);
+        PlatoEntity entity = platoMapper.toEntity(plato);
         PlatoEntity saved = jpaRepository.save(entity);
-        return PlatoMapper.toDomain(saved);
+        return platoMapper.toDomain(saved);
     }
 
     @Override
     public Optional<Plato> buscarPorId(Long id) {
         return jpaRepository.findById(id)
-                .map(PlatoMapper::toDomain);
+                .map(platoMapper::toDomain);
     }
 
 }

@@ -2,10 +2,8 @@ package com.plazoleta.plazoleta_service.application.service;
 
 import org.springframework.stereotype.Service;
 
-import com.plazoleta.plazoleta_service.domain.exception.NitInvalidoException;
-import com.plazoleta.plazoleta_service.domain.exception.NombreInvalidoException;
+import com.plazoleta.plazoleta_service.domain.constants.RoleConstants;
 import com.plazoleta.plazoleta_service.domain.exception.RolUsuarioNoPermitidoException;
-import com.plazoleta.plazoleta_service.domain.exception.TelefonoInvalidoException;
 import com.plazoleta.plazoleta_service.domain.exception.UsuarioNoExisteException;
 import com.plazoleta.plazoleta_service.domain.model.Restaurante;
 import com.plazoleta.plazoleta_service.domain.ports.in.ICrearRestauranteUseCase;
@@ -22,38 +20,16 @@ public class CrearRestauranteService implements ICrearRestauranteUseCase {
 
     @Override
     public void ejecutar(Restaurante restaurante) {
+        restaurante.validarReglasDeNegocio();
+
         if (!usuarioClientPort.existeUsuario(restaurante.getIdPropietario())) {
             throw new UsuarioNoExisteException();
         }
-        if (!usuarioClientPort.rolUsuarioString(restaurante.getIdPropietario()).equals("PROPIETARIO")) {
+        if (!RoleConstants.ROL_PROPIETARIO.equals(usuarioClientPort.rolUsuarioString(restaurante.getIdPropietario()))) {
             throw new RolUsuarioNoPermitidoException();
         }
-        validarNombre(restaurante.getNombre());
-        validarNit(restaurante.getNit());
-        validarTelefono(restaurante.getTelefono());
 
         restauranteRepository.guardar(restaurante);
 
-    }
-
-    private void validarNombre(String nombre) {
-        if (nombre == null || nombre.trim().isEmpty()) {
-            throw new NombreInvalidoException();
-        }
-        if (nombre.matches("\\d+")) {
-            throw new NombreInvalidoException();
-        }
-    }
-
-    private void validarNit(String nit) {
-        if (!nit.matches("\\d+")) {
-            throw new NitInvalidoException();
-        }
-    }
-
-    private void validarTelefono(String telefono) {
-        if (telefono.length() > 13) {
-            throw new TelefonoInvalidoException();
-        }
     }
 }

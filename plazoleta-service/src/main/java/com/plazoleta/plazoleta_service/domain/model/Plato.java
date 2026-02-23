@@ -1,5 +1,8 @@
 package com.plazoleta.plazoleta_service.domain.model;
 
+import com.plazoleta.plazoleta_service.domain.exception.CampoObligatorioException;
+import com.plazoleta.plazoleta_service.domain.exception.PrecioInvalidoException;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,4 +29,37 @@ public class Plato {
         this.activo = true;
     }
     public Plato() {}
+
+    public void validarReglasDeCreacion() {
+        validarCampoObligatorio(nombre, "nombre");
+        validarCampoObligatorio(descripcion, "descripcion");
+        validarCampoObligatorio(urlImagen, "urlImagen");
+        if (categoria == null) {
+            throw new CampoObligatorioException("categoria");
+        }
+        if (idRestaurante == null) {
+            throw new CampoObligatorioException("idRestaurante");
+        }
+        validarPrecio(precio);
+        activo = true;
+    }
+
+    public void actualizarPrecioYDescripcion(String nuevaDescripcion, Integer nuevoPrecio) {
+        validarCampoObligatorio(nuevaDescripcion, "descripcion");
+        validarPrecio(nuevoPrecio);
+        descripcion = nuevaDescripcion;
+        precio = nuevoPrecio;
+    }
+
+    private void validarPrecio(Integer valorPrecio) {
+        if (valorPrecio == null || valorPrecio <= 0) {
+            throw new PrecioInvalidoException();
+        }
+    }
+
+    private void validarCampoObligatorio(String valor, String campo) {
+        if (valor == null || valor.trim().isEmpty()) {
+            throw new CampoObligatorioException(campo);
+        }
+    }
 }

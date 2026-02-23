@@ -4,6 +4,7 @@ import java.security.Key;
 import java.util.Date;
 import java.util.function.Function;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.Claims;
@@ -15,17 +16,25 @@ import io.jsonwebtoken.security.Keys;
 @Service
 public class JwtService {
 
-    private final String SECRET_KEY = "proyecto_pragma_plazoleta_firma_token";
+    private final String secretKey;
+    private final long expirationMs;
+
+    public JwtService(
+            @Value("${security.jwt.secret}") String secretKey,
+            @Value("${security.jwt.expiration-ms:3600000}") long expirationMs) {
+        this.secretKey = secretKey;
+        this.expirationMs = expirationMs;
+    }
 
     public String generateToken(Integer id, String username, String role) {
 
         return Jwts.builder()
                 .setSubject(username)
-                .claim("id", id)
-                .claim("role", role)
+                .claim(SecurityConstants.JWT_CLAIM_IDENTIFICADOR, id)
+                .claim(SecurityConstants.JWT_CLAIM_ROL, role)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
-                .signWith(Keys.hmacShaKeyFor(SECRET_KEY.getBytes()), SignatureAlgorithm.HS256)
+                .setExpiration(new Date(System.currentTimeMillis() + expirationMs))
+                .signWith(Keys.hmacShaKeyFor(secretKey.getBytes()), SignatureAlgorithm.HS256)
                 .compact();
     }
 
@@ -34,7 +43,7 @@ public class JwtService {
     }
 
     private Key getSignInKey() {
-        byte[] keyBytes = SECRET_KEY.getBytes();
+        byte[] keyBytes = secretKey.getBytes();
         return Keys.hmacShaKeyFor(keyBytes);
     }
 

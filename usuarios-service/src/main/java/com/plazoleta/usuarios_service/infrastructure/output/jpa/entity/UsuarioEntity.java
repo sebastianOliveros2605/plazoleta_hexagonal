@@ -2,15 +2,13 @@ package com.plazoleta.usuarios_service.infrastructure.output.jpa.entity;
 
 import java.util.Date;
 
-import com.plazoleta.usuarios_service.domain.model.RolEnum;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -39,8 +37,11 @@ public class UsuarioEntity {
     private String correo;
 
     private String password;
+    @Column(name = "id_restaurante", nullable = true)
+    private Long idRestaurante;
 
-    @Enumerated(EnumType.STRING)
-    private RolEnum rol;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "rol_id", nullable = false)
+    private RolEntity rol;
 }
 
