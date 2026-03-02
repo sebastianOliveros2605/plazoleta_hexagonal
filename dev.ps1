@@ -153,10 +153,7 @@ function Stop-TrackedProcess([int]$TargetPid) {
 }
 
 function Do-Start {
-    $env:NOTIFICACIONES_PROVIDER="twilio"
-    $env:TWILIO_ACCOUNT_SID="AC3afa6895f2aeb37555c2acbdc67c146a"
-    $env:TWILIO_AUTH_TOKEN="9c9e3aae3e0d11def6678fdd5a439ac8"
-    $env:TWILIO_PHONE_NUMBER="+17744856160"
+
     if (-not $env:NOTIFICACIONES_PROVIDER) {
         $env:NOTIFICACIONES_PROVIDER = "console"
 
