@@ -34,6 +34,24 @@ public class UsuarioClientAdapter implements IUsuarioClientPort {
     }
 
     @Override
+    public Long consultarIdRestauranteDeUsuario(Integer idUsuario) {
+        UsuarioResponse response = feignClient.obtenerUsuario(idUsuario);
+        return response.getIdRestaurante();
+    }
+
+    @Override
+    public String consultarCorreoUsuario(Integer idUsuario) {
+        UsuarioResponse response = feignClient.obtenerUsuario(idUsuario);
+        return response.getCorreo();
+    }
+
+    @Override
+    public String consultarCelularUsuario(Integer idUsuario) {
+        UsuarioResponse response = feignClient.obtenerUsuario(idUsuario);
+        return response.getCelular();
+    }
+
+    @Override
     public String rolUsuarioString(Integer idUsuario) {
         UsuarioResponse response = feignClient.obtenerUsuario(idUsuario);
         return response.getRol();

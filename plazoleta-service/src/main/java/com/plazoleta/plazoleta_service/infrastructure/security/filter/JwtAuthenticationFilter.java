@@ -48,6 +48,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         Integer id = jwtService.extractClaim(token, claims -> claims.get("id", Integer.class));
+        String username = jwtService.extractUsername(token);
         String role = jwtService.extractClaim(token, claims -> claims.get("role", String.class));
         if (role == null || role.isBlank()) {
             filterChain.doFilter(request, response);
@@ -62,6 +63,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     id,
                     null,
                     List.of(authority));
+            authToken.setDetails(username);
 
             SecurityContextHolder.getContext().setAuthentication(authToken);
         }

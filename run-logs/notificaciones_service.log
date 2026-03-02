@@ -1,0 +1,210 @@
+[INFO] Scanning for projects...
+Downloading from central: https://repo.maven.apache.org/maven2/org/cyclonedx/maven-metadata.xml
+Progress (1): 243 B                   Downloaded from central: https://repo.maven.apache.org/maven2/org/cyclonedx/maven-metadata.xml (243 B at 416 B/s)
+[INFO] 
+[INFO] ----------------< com.plazoleta:notificaciones_service >----------------
+[INFO] Building notificaciones_service 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.5.11:run (default-cli) > test-compile @ notificaciones_service >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ notificaciones_service ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ notificaciones_service ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ notificaciones_service ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ notificaciones_service ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] <<< spring-boot:3.5.11:run (default-cli) < test-compile @ notificaciones_service <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.5.11:run (default-cli) @ notificaciones_service ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.11)
+
+2026-03-02T08:57:24.324-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] c.p.n.NotificacionesServiceApplication   : Starting NotificacionesServiceApplication using Java 21.0.2 with PID 21188 (C:\Users\sebas\OneDrive\Escritorio\proyecto-plazoleta\notificaciones_service\target\classes started by sebas in C:\Users\sebas\OneDrive\Escritorio\proyecto-plazoleta\notificaciones_service)
+2026-03-02T08:57:24.328-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] c.p.n.NotificacionesServiceApplication   : No active profile set, falling back to 1 default profile: "default"
+2026-03-02T08:57:24.405-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-03-02T08:57:24.406-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-03-02T08:57:26.110-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8083 (http)
+2026-03-02T08:57:26.141-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-02T08:57:26.142-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.52]
+2026-03-02T08:57:26.218-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-03-02T08:57:26.220-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1812 ms
+2026-03-02T08:57:27.260-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] c.r.stream.impl.StreamEnvironment        : Connecting to localhost with guest user, assuming development environment
+2026-03-02T08:57:27.263-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] c.r.stream.impl.StreamEnvironment        : Using address resolver to always connect to localhost
+2026-03-02T08:57:27.547-05:00  WARN 21188 --- [notificaciones_service] [  restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: d41af06e-f2d7-4bf6-849f-443217d4a5b3
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-03-02T08:57:27.560-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-03-02T08:57:27.800-05:00  WARN 21188 --- [notificaciones_service] [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2026-03-02T08:57:27.869-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8083 (http) with context path '/'
+2026-03-02T08:57:27.875-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2026-03-02T08:57:28.009-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] o.s.a.r.c.CachingConnectionFactory       : Created new connection: rabbitConnectionFactory#5a37d918:0/SimpleConnection@2de43dc4 [delegate=amqp://guest@127.0.0.1:5672/, localPort=52071]
+2026-03-02T08:57:28.135-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] c.p.n.NotificacionesServiceApplication   : Started NotificacionesServiceApplication in 4.453 seconds (process running for 5.151)
+2026-03-02T08:57:28.698-05:00  INFO 21188 --- [notificaciones_service] [nio-8083-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-02T08:57:28.700-05:00  INFO 21188 --- [notificaciones_service] [nio-8083-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-03-02T08:57:28.701-05:00  INFO 21188 --- [notificaciones_service] [nio-8083-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-03-02T10:50:54.958-05:00  INFO 21188 --- [notificaciones_service] [   File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 15 class path changes (0 additions, 14 deletions, 1 modification)
+2026-03-02T10:50:55.144-05:00  INFO 21188 --- [notificaciones_service] [ntContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
+2026-03-02T10:50:55.650-05:00  INFO 21188 --- [notificaciones_service] [ntContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
+2026-03-02T10:50:55.658-05:00  INFO 21188 --- [notificaciones_service] [       Thread-1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-02T10:50:55.684-05:00  INFO 21188 --- [notificaciones_service] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.11)
+
+2026-03-02T10:50:57.426-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] c.p.n.NotificacionesServiceApplication   : Starting NotificacionesServiceApplication using Java 21.0.2 with PID 21188 (C:\Users\sebas\OneDrive\Escritorio\proyecto-plazoleta\notificaciones_service\target\classes started by sebas in C:\Users\sebas\OneDrive\Escritorio\proyecto-plazoleta\notificaciones_service)
+2026-03-02T10:50:57.428-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] c.p.n.NotificacionesServiceApplication   : No active profile set, falling back to 1 default profile: "default"
+2026-03-02T10:50:58.156-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8083 (http)
+2026-03-02T10:50:58.163-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-02T10:50:58.164-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.52]
+2026-03-02T10:50:58.215-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-03-02T10:50:58.216-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 782 ms
+2026-03-02T10:50:58.605-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] c.r.stream.impl.StreamEnvironment        : Connecting to localhost with guest user, assuming development environment
+2026-03-02T10:50:58.606-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] c.r.stream.impl.StreamEnvironment        : Using address resolver to always connect to localhost
+2026-03-02T10:50:58.793-05:00  WARN 21188 --- [notificaciones_service] [  restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: dcf7de8d-55bb-4c40-9368-93810d3d51cd
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-03-02T10:50:58.796-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-03-02T10:50:58.858-05:00  WARN 21188 --- [notificaciones_service] [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2026-03-02T10:50:58.878-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8083 (http) with context path '/'
+2026-03-02T10:50:58.887-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] c.p.n.NotificacionesServiceApplication   : Started NotificacionesServiceApplication in 1.536 seconds (process running for 6816.018)
+2026-03-02T10:50:58.896-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation delta:
+
+
+==========================
+CONDITION EVALUATION DELTA
+==========================
+
+
+Positive matches:
+-----------------
+
+   RabbitAnnotationDrivenConfiguration#simpleRabbitListenerContainerFactory matched:
+      - @ConditionalOnProperty (spring.rabbitmq.listener.type=simple) matched (OnPropertyCondition)
+      - @ConditionalOnMissingBean (names: rabbitListenerContainerFactory; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+
+Negative matches:
+-----------------
+
+    None
+
+
+Exclusions:
+-----------
+
+    None
+
+
+Unconditional classes:
+----------------------
+
+    None
+
+
+
+2026-03-02T10:51:00.315-05:00  INFO 21188 --- [notificaciones_service] [   File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 14 class path changes (14 additions, 0 deletions, 0 modifications)
+2026-03-02T10:51:00.317-05:00  INFO 21188 --- [notificaciones_service] [       Thread-5] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-02T10:51:00.329-05:00  INFO 21188 --- [notificaciones_service] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.11)
+
+2026-03-02T10:51:01.555-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] c.p.n.NotificacionesServiceApplication   : Starting NotificacionesServiceApplication using Java 21.0.2 with PID 21188 (C:\Users\sebas\OneDrive\Escritorio\proyecto-plazoleta\notificaciones_service\target\classes started by sebas in C:\Users\sebas\OneDrive\Escritorio\proyecto-plazoleta\notificaciones_service)
+2026-03-02T10:51:01.556-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] c.p.n.NotificacionesServiceApplication   : No active profile set, falling back to 1 default profile: "default"
+2026-03-02T10:51:02.147-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8083 (http)
+2026-03-02T10:51:02.149-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-02T10:51:02.149-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.52]
+2026-03-02T10:51:02.181-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-03-02T10:51:02.182-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 622 ms
+2026-03-02T10:51:02.381-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] c.r.stream.impl.StreamEnvironment        : Connecting to localhost with guest user, assuming development environment
+2026-03-02T10:51:02.381-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] c.r.stream.impl.StreamEnvironment        : Using address resolver to always connect to localhost
+2026-03-02T10:51:02.546-05:00  WARN 21188 --- [notificaciones_service] [  restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 2bd46de3-6a15-4c22-a841-46ac2feaef8f
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-03-02T10:51:02.550-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-03-02T10:51:02.599-05:00  WARN 21188 --- [notificaciones_service] [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2026-03-02T10:51:02.626-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8083 (http) with context path '/'
+2026-03-02T10:51:02.628-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2026-03-02T10:51:02.749-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] o.s.a.r.c.CachingConnectionFactory       : Created new connection: rabbitConnectionFactory#493ed335:0/SimpleConnection@52f4494b [delegate=amqp://guest@127.0.0.1:5672/, localPort=63715]
+2026-03-02T10:51:02.850-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] c.p.n.NotificacionesServiceApplication   : Started NotificacionesServiceApplication in 1.341 seconds (process running for 6819.98)
+2026-03-02T10:51:02.857-05:00  INFO 21188 --- [notificaciones_service] [  restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation delta:
+
+
+==========================
+CONDITION EVALUATION DELTA
+==========================
+
+
+Positive matches:
+-----------------
+
+   TwillioAdapter matched:
+      - @ConditionalOnProperty (notificaciones.provider=twilio) matched (OnPropertyCondition)
+
+
+Negative matches:
+-----------------
+
+   ConsoleAdapter:
+      Did not match:
+         - @ConditionalOnProperty (notificaciones.provider=console) found different value in property 'notificaciones.provider' (OnPropertyCondition)
+
+   RabbitAnnotationDrivenConfiguration#simpleRabbitListenerContainerFactory:
+      Did not match:
+         - @ConditionalOnMissingBean (names: rabbitListenerContainerFactory; SearchStrategy: all) found beans named rabbitListenerContainerFactory (OnBeanCondition)
+      Matched:
+         - @ConditionalOnProperty (spring.rabbitmq.listener.type=simple) matched (OnPropertyCondition)
+
+
+Exclusions:
+-----------
+
+    None
+
+
+Unconditional classes:
+----------------------
+
+    None
+
+
+

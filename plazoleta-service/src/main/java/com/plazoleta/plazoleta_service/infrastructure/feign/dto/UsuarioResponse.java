@@ -8,6 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UsuarioResponse {
+    private Integer id;
     private String nombre;
     private String apellido;
     private Long documentoIdentidad;
@@ -16,4 +17,5 @@ public class UsuarioResponse {
     private String correo;
     private String password;
     private String rol;
+    private Long idRestaurante;
 }

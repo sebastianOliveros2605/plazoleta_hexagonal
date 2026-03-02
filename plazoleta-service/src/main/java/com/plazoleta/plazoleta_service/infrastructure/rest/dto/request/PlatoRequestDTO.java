@@ -1,11 +1,9 @@
 package com.plazoleta.plazoleta_service.infrastructure.rest.dto.request;
 
-import com.plazoleta.plazoleta_service.domain.model.CategoriaPlatoEnum;
-
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,7 +29,7 @@ public class PlatoRequestDTO {
     @Schema(example = "1")
     @NotNull
     private Long idRestaurante;
-    @Schema(example = "ALMUERZO")
+    @Schema(example = "1")
     @NotNull
-    private CategoriaPlatoEnum categoria;
+    private Long idCategoria;
 }

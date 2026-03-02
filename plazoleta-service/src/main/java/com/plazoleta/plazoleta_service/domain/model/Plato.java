@@ -15,16 +15,16 @@ public class Plato {
     private String descripcion;
     private Integer precio;
     private String urlImagen;
-    private CategoriaPlatoEnum categoria;
+    private Long idCategoria;
     private Boolean activo;
     private Long idRestaurante;
 
-    public Plato(String nombre,String descripcion, Integer precio, String urlImagen,CategoriaPlatoEnum categoria, Long idRestaurante){
+    public Plato(String nombre,String descripcion, Integer precio, String urlImagen,Long idCategoria, Long idRestaurante){
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.urlImagen = urlImagen;
-        this.categoria = categoria;
+        this.idCategoria = idCategoria;
         this.idRestaurante = idRestaurante;
         this.activo = true;
     }
@@ -34,7 +34,7 @@ public class Plato {
         validarCampoObligatorio(nombre, "nombre");
         validarCampoObligatorio(descripcion, "descripcion");
         validarCampoObligatorio(urlImagen, "urlImagen");
-        if (categoria == null) {
+        if (idCategoria == null) {
             throw new CampoObligatorioException("categoria");
         }
         if (idRestaurante == null) {
@@ -61,5 +61,9 @@ public class Plato {
         if (valor == null || valor.trim().isEmpty()) {
             throw new CampoObligatorioException(campo);
         }
+    }
+
+    public void habilitarDeshabilitarPlato(Boolean habilitar) {
+        this.activo = habilitar;
     }
 }

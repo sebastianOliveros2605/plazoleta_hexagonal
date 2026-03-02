@@ -8,6 +8,8 @@ import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface PlatoRestMapper {
 
@@ -21,4 +23,6 @@ public interface PlatoRestMapper {
     Plato toDomain(ModificarPlatoRequestDTO dto);
 
     PlatoResponseDTO toResponse(Plato domain);
+
+    List<PlatoResponseDTO> toResponseList(List<Plato> platos);
 }
