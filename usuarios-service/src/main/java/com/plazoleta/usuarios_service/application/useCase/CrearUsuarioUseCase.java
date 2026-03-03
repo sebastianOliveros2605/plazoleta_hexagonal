@@ -3,10 +3,14 @@ package com.plazoleta.usuarios_service.application.useCase;
 import com.plazoleta.usuarios_service.domain.exception.DatosInvalidosException;
 import com.plazoleta.usuarios_service.domain.exception.EmailDuplicadoException;
 import com.plazoleta.usuarios_service.domain.exception.MenorDeEdadException;
+import com.plazoleta.usuarios_service.domain.exception.RolNoEncontradoException;
 import com.plazoleta.usuarios_service.domain.constants.UsuarioDomainConstants;
-import com.plazoleta.usuarios_service.domain.model.Rol;
+import com.plazoleta.usuarios_service.domain.model.RolNombre;
 import com.plazoleta.usuarios_service.domain.model.Usuario;
+import com.plazoleta.usuarios_service.domain.puertosIn.IEmpleadoRestaurantePersistencePort;
 import com.plazoleta.usuarios_service.domain.puertosIn.IPasswordEncoderPort;
+import com.plazoleta.usuarios_service.domain.puertosIn.IRestauranteClientePort;
+import com.plazoleta.usuarios_service.domain.puertosIn.IRolPersistencePort;
 import com.plazoleta.usuarios_service.domain.puertosIn.IUsuarioPersistencePort;
 import lombok.RequiredArgsConstructor;
 
@@ -20,34 +24,60 @@ public class CrearUsuarioUseCase {
     private static final Pattern EMAIL_PATTERN = Pattern.compile(UsuarioDomainConstants.REGEX_CORREO);
 
     private final IUsuarioPersistencePort usuarioPersistencePort;
+    private final IRolPersistencePort rolPersistencePort;
+    private final IRestauranteClientePort restauranteClientePort;
+    private final IEmpleadoRestaurantePersistencePort empleadoRestaurantePersistencePort;
     private final IPasswordEncoderPort passwordEncoderPort;
 
-    public Usuario crearUsuario(Usuario usuario) {
+    public Usuario crearPropietario(Usuario usuario) {
+        return crearUsuarioConRol(usuario, RolNombre.PROPIETARIO, null);
+    }
+
+    public Usuario crearCliente(Usuario usuario) {
+        return crearUsuarioConRol(usuario, RolNombre.CLIENTE, null);
+    }
+
+    public Usuario crearAdmin(Usuario usuario) {
+        return crearUsuarioConRol(usuario, RolNombre.ADMIN, null);
+    }
+
+    public Usuario crearEmpleado(Usuario usuario, Integer idPropietarioAutenticado) {
+        Long idRestaurante = restauranteClientePort.consultarIdRestaurantePorPropietario(idPropietarioAutenticado);
+        return crearUsuarioConRol(usuario, RolNombre.EMPLEADO, idRestaurante);
+    }
+
+    private Usuario crearUsuarioConRol(Usuario usuario, RolNombre rolNombre, Long idRestauranteEmpleado) {
+        prepararRol(usuario, rolNombre);
         validarCamposObligatorios(usuario);
         validarCelular(usuario.getCelular());
         validarCorreo(usuario.getCorreo());
-        validarRol(usuario);
-        validarAsociacionRestaurantePorRol(usuario);
         validarCorreoUnico(usuario.getCorreo());
 
-        if (Rol.ADMIN.equals(usuario.getRol().getNombre()) || Rol.PROPIETARIO.equals(usuario.getRol().getNombre())) {
+        if (esRolAdminOPropietario(usuario.getRol())) {
             validarMayorDeEdad(usuario);
+        }
+
+        if (usuario.getRol() == RolNombre.EMPLEADO && idRestauranteEmpleado == null) {
+            throw new DatosInvalidosException(UsuarioDomainConstants.MENSAJE_EMPLEADO_SIN_RESTAURANTE);
         }
 
         String passwordHashed = passwordEncoderPort.encode(usuario.getPassword());
         usuario.setPassword(passwordHashed);
 
-        return usuarioPersistencePort.save(usuario);
+        Usuario usuarioGuardado = usuarioPersistencePort.save(usuario);
+        if (rolNombre == RolNombre.EMPLEADO) {
+            empleadoRestaurantePersistencePort.saveOrUpdate(usuarioGuardado.getId(), idRestauranteEmpleado);
+        }
+        return usuarioGuardado;
     }
 
-    private void validarAsociacionRestaurantePorRol(Usuario usuario) {
-        if (Rol.EMPLEADO.equals(usuario.getRol().getNombre()) && usuario.getIdRestaurante() == null) {
-            throw new DatosInvalidosException(UsuarioDomainConstants.MENSAJE_EMPLEADO_SIN_RESTAURANTE);
+    private void prepararRol(Usuario usuario, RolNombre rolNombre) {
+        if (rolNombre == null) {
+            throw new DatosInvalidosException(UsuarioDomainConstants.MENSAJE_ROL_OBLIGATORIO);
         }
-
-        if (!Rol.EMPLEADO.equals(usuario.getRol().getNombre())) {
-            usuario.setIdRestaurante(null);
-        }
+        Integer rolId = rolPersistencePort.findIdByNombre(rolNombre.name())
+                .orElseThrow(() -> new RolNoEncontradoException(rolNombre.name()));
+        usuario.setRolId(rolId);
     }
 
     private void validarCamposObligatorios(Usuario usuario) {
@@ -74,12 +104,6 @@ public class CrearUsuarioUseCase {
         }
     }
 
-    private void validarRol(Usuario usuario) {
-        if (usuario.getRol() == null || usuario.getRol().getId() == null || isBlank(usuario.getRol().getNombre())) {
-            throw new DatosInvalidosException(UsuarioDomainConstants.MENSAJE_ROL_OBLIGATORIO);
-        }
-    }
-
     private void validarCorreoUnico(String correo) {
         if (usuarioPersistencePort.existsByCorreo(correo)) {
             throw new EmailDuplicadoException();
@@ -101,5 +125,9 @@ public class CrearUsuarioUseCase {
 
     private boolean isBlank(String value) {
         return value == null || value.trim().isEmpty();
+    }
+
+    private boolean esRolAdminOPropietario(RolNombre rolNombre) {
+        return rolNombre == RolNombre.ADMIN || rolNombre == RolNombre.PROPIETARIO;
     }
 }

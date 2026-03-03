@@ -1,0 +1,97 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------< com.plazoleta:usuarios-service >-------------------
+[INFO] Building usuarios-service 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.5:run (default-cli) > test-compile @ usuarios-service >>>
+[INFO] 
+[INFO] --- jacoco:0.8.12:prepare-agent (prepare-agent) @ usuarios-service ---
+[INFO] argLine set to -javaagent:C:\\Users\\sebas\\.m2\\repository\\org\\jacoco\\org.jacoco.agent\\0.8.12\\org.jacoco.agent-0.8.12-runtime.jar=destfile=C:\\Users\\sebas\\OneDrive\\Escritorio\\proyecto-plazoleta\\usuarios-service\\target\\jacoco.exec
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ usuarios-service ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ usuarios-service ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ usuarios-service ---
+[INFO] skip non existing resourceDirectory C:\Users\sebas\OneDrive\Escritorio\proyecto-plazoleta\usuarios-service\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ usuarios-service ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] <<< spring-boot:3.2.5:run (default-cli) < test-compile @ usuarios-service <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.5:run (default-cli) @ usuarios-service ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.5)
+
+2026-03-02T19:01:26.465-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] c.p.u.UsuariosServiceApplication         : Starting UsuariosServiceApplication using Java 21.0.2 with PID 12340 (C:\Users\sebas\OneDrive\Escritorio\proyecto-plazoleta\usuarios-service\target\classes started by sebas in C:\Users\sebas\OneDrive\Escritorio\proyecto-plazoleta\usuarios-service)
+2026-03-02T19:01:26.469-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] c.p.u.UsuariosServiceApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-03-02T19:01:26.533-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-03-02T19:01:26.533-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-03-02T19:01:27.840-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-02T19:01:27.937-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 76 ms. Found 3 JPA repository interfaces.
+2026-03-02T19:01:28.271-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=6b92261d-f511-32ed-b25f-9a1cea2b9cc0
+2026-03-02T19:01:28.983-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-03-02T19:01:29.002-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-02T19:01:29.003-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-03-02T19:01:29.070-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-03-02T19:01:29.072-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2537 ms
+2026-03-02T19:01:29.283-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-02T19:01:29.352-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-03-02T19:01:29.390-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-03-02T19:01:29.657-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-02T19:01:29.700-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-03-02T19:01:30.139-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@642bb23c
+2026-03-02T19:01:30.142-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-03-02T19:01:31.373-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-02T19:01:31.494-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-02T19:01:32.162-05:00  WARN 12340 --- [usuarios-service] [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-02T19:01:32.212-05:00  WARN 12340 --- [usuarios-service] [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2026-03-02T19:01:32.364-05:00  WARN 12340 --- [usuarios-service] [  restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: cfff8b17-a353-41fc-8fc7-d569572bfc8f
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-03-02T19:01:32.757-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1f6d8469, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@ef903e7, org.springframework.security.web.context.SecurityContextHolderFilter@42d3f50e, org.springframework.security.web.header.HeaderWriterFilter@3c101bf9, org.springframework.web.filter.CorsFilter@24ef1f09, org.springframework.security.web.authentication.logout.LogoutFilter@6e1f7602, com.plazoleta.usuarios_service.infrastructure.security.filter.JwtAuthenticationFilter@586c5ed6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@606891d0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6a2b5be, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@370fb638, org.springframework.security.web.session.SessionManagementFilter@1df314d7, org.springframework.security.web.access.ExceptionTranslationFilter@4f2f9972, org.springframework.security.web.access.intercept.AuthorizationFilter@610e1162]
+2026-03-02T19:01:34.305-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-03-02T19:01:34.366-05:00  WARN 12340 --- [usuarios-service] [  restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-03-02T19:01:34.372-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-02T19:01:34.376-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-03-02T19:01:34.419-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-03-02T19:01:34.442-05:00  INFO 12340 --- [usuarios-service] [  restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-03-02T19:01:34.470-05:00 ERROR 12340 --- [usuarios-service] [  restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  15.000 s
+[INFO] Finished at: 2026-03-02T19:01:35-05:00
+[INFO] ------------------------------------------------------------------------

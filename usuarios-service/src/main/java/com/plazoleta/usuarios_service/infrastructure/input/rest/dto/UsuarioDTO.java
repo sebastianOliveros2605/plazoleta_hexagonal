@@ -1,16 +1,11 @@
 package com.plazoleta.usuarios_service.infrastructure.input.rest.dto;
 
-import java.util.Date;
-
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Date;
 
 @Getter
 @Setter
@@ -30,7 +25,7 @@ public class UsuarioDTO {
     @Size(max = 13)
     @Pattern(regexp = "^\\+?[0-9]+$")
     private String celular;
-    @Schema(example = "1998-05-20T00:00:00.000+00:00")
+    @Schema(example = "1998-05-20")
     @NotNull
     private Date fechaNacimiento;
     @Schema(example = "sebastian@mail.com")

@@ -15,10 +15,7 @@
 [INFO] Copying 1 resource from src\main\resources to target\classes
 [INFO] 
 [INFO] --- compiler:3.11.0:compile (default-compile) @ plazoleta-service ---
-[INFO] Changes detected - recompiling the module! :source
-[INFO] Compiling 125 source files with javac [debug release 17] to target\classes
-[WARNING] Implicitly compiled files were not subject to annotation processing.
-  Use -implicit to specify a policy for implicit compilation.
+[INFO] Nothing to compile - all classes are up to date
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ plazoleta-service ---
 [INFO] Not copying test resources
@@ -40,121 +37,69 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.5)
 
-2026-03-02T08:56:42.353-05:00  INFO 36224 --- [plazoleta-service] [           main] c.p.p.PlazoletaServiceApplication        : Starting PlazoletaServiceApplication using Java 21.0.2 with PID 36224 (C:\Users\sebas\OneDrive\Escritorio\proyecto-plazoleta\plazoleta-service\target\classes started by sebas in C:\Users\sebas\OneDrive\Escritorio\proyecto-plazoleta\plazoleta-service)
-2026-03-02T08:56:42.365-05:00  INFO 36224 --- [plazoleta-service] [           main] c.p.p.PlazoletaServiceApplication        : No active profile set, falling back to 1 default profile: "default"
-2026-03-02T08:56:43.351-05:00 DEBUG 36224 --- [plazoleta-service] [           main] o.s.c.openfeign.FeignClientsRegistrar$1  : Identified candidate component class: file [C:\Users\sebas\OneDrive\Escritorio\proyecto-plazoleta\plazoleta-service\target\classes\com\plazoleta\plazoleta_service\infrastructure\feign\client\ITrazabilidadFeignClient.class]
-2026-03-02T08:56:43.352-05:00 DEBUG 36224 --- [plazoleta-service] [           main] o.s.c.openfeign.FeignClientsRegistrar$1  : Identified candidate component class: file [C:\Users\sebas\OneDrive\Escritorio\proyecto-plazoleta\plazoleta-service\target\classes\com\plazoleta\plazoleta_service\infrastructure\feign\client\IUsuarioFeignClient.class]
-2026-03-02T08:56:43.783-05:00  INFO 36224 --- [plazoleta-service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-03-02T08:56:43.909-05:00  INFO 36224 --- [plazoleta-service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 108 ms. Found 4 JPA repository interfaces.
-2026-03-02T08:56:44.259-05:00  INFO 36224 --- [plazoleta-service] [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=f09e2ce2-f55d-37fa-bbbe-43a0d28017ae
-2026-03-02T08:56:45.030-05:00  INFO 36224 --- [plazoleta-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
-2026-03-02T08:56:45.049-05:00  INFO 36224 --- [plazoleta-service] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-03-02T08:56:45.050-05:00  INFO 36224 --- [plazoleta-service] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
-2026-03-02T08:56:45.161-05:00  INFO 36224 --- [plazoleta-service] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-03-02T08:56:45.163-05:00  INFO 36224 --- [plazoleta-service] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2739 ms
-2026-03-02T08:56:45.394-05:00  INFO 36224 --- [plazoleta-service] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-03-02T08:56:45.477-05:00  INFO 36224 --- [plazoleta-service] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2026-03-02T08:56:45.557-05:00  INFO 36224 --- [plazoleta-service] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-03-02T08:56:45.944-05:00  INFO 36224 --- [plazoleta-service] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-03-02T08:56:45.990-05:00  INFO 36224 --- [plazoleta-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-03-02T08:56:46.468-05:00  INFO 36224 --- [plazoleta-service] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2d459bda
-2026-03-02T08:56:46.471-05:00  INFO 36224 --- [plazoleta-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-03-02T08:56:48.131-05:00  INFO 36224 --- [plazoleta-service] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-03-02T08:56:48.407-05:00  INFO 36224 --- [plazoleta-service] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-03-02T08:56:48.952-05:00  INFO 36224 --- [plazoleta-service] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-03-02T08:56:49.836-05:00 DEBUG 36224 --- [plazoleta-service] [           main] o.s.c.openfeign.FeignClientFactoryBean   : Creating a FeignClientFactoryBean.
-2026-03-02T08:56:50.292-05:00 DEBUG 36224 --- [plazoleta-service] [           main] o.s.c.openfeign.FeignClientFactoryBean   : Creating a FeignClientFactoryBean.
-2026-03-02T08:56:50.895-05:00  WARN 36224 --- [plazoleta-service] [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+2026-03-02T21:15:59.890-05:00  INFO 6748 --- [plazoleta-service] [           main] c.p.p.PlazoletaServiceApplication        : Starting PlazoletaServiceApplication using Java 21.0.2 with PID 6748 (C:\Users\sebas\OneDrive\Escritorio\proyecto-plazoleta\plazoleta-service\target\classes started by sebas in C:\Users\sebas\OneDrive\Escritorio\proyecto-plazoleta\plazoleta-service)
+2026-03-02T21:15:59.894-05:00  INFO 6748 --- [plazoleta-service] [           main] c.p.p.PlazoletaServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2026-03-02T21:16:00.736-05:00 DEBUG 6748 --- [plazoleta-service] [           main] o.s.c.openfeign.FeignClientsRegistrar$1  : Identified candidate component class: file [C:\Users\sebas\OneDrive\Escritorio\proyecto-plazoleta\plazoleta-service\target\classes\com\plazoleta\plazoleta_service\infrastructure\feign\client\ITrazabilidadFeignClient.class]
+2026-03-02T21:16:00.737-05:00 DEBUG 6748 --- [plazoleta-service] [           main] o.s.c.openfeign.FeignClientsRegistrar$1  : Identified candidate component class: file [C:\Users\sebas\OneDrive\Escritorio\proyecto-plazoleta\plazoleta-service\target\classes\com\plazoleta\plazoleta_service\infrastructure\feign\client\IUsuarioFeignClient.class]
+2026-03-02T21:16:01.063-05:00  INFO 6748 --- [plazoleta-service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-02T21:16:01.170-05:00  INFO 6748 --- [plazoleta-service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 98 ms. Found 4 JPA repository interfaces.
+2026-03-02T21:16:01.423-05:00  INFO 6748 --- [plazoleta-service] [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=f09e2ce2-f55d-37fa-bbbe-43a0d28017ae
+2026-03-02T21:16:01.905-05:00  INFO 6748 --- [plazoleta-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-03-02T21:16:01.921-05:00  INFO 6748 --- [plazoleta-service] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-02T21:16:01.922-05:00  INFO 6748 --- [plazoleta-service] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-03-02T21:16:01.997-05:00  INFO 6748 --- [plazoleta-service] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-03-02T21:16:02.000-05:00  INFO 6748 --- [plazoleta-service] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2048 ms
+2026-03-02T21:16:02.180-05:00  INFO 6748 --- [plazoleta-service] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-02T21:16:02.230-05:00  INFO 6748 --- [plazoleta-service] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-03-02T21:16:02.261-05:00  INFO 6748 --- [plazoleta-service] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-03-02T21:16:02.469-05:00  INFO 6748 --- [plazoleta-service] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-02T21:16:02.498-05:00  INFO 6748 --- [plazoleta-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-03-02T21:16:02.860-05:00  INFO 6748 --- [plazoleta-service] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@59a5bb61
+2026-03-02T21:16:02.863-05:00  INFO 6748 --- [plazoleta-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-03-02T21:16:04.011-05:00  INFO 6748 --- [plazoleta-service] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-02T21:16:04.189-05:00  INFO 6748 --- [plazoleta-service] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-02T21:16:04.555-05:00  INFO 6748 --- [plazoleta-service] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-02T21:16:05.052-05:00 DEBUG 6748 --- [plazoleta-service] [           main] o.s.c.openfeign.FeignClientFactoryBean   : Creating a FeignClientFactoryBean.
+2026-03-02T21:16:05.314-05:00 DEBUG 6748 --- [plazoleta-service] [           main] o.s.c.openfeign.FeignClientFactoryBean   : Creating a FeignClientFactoryBean.
+2026-03-02T21:16:05.666-05:00  WARN 6748 --- [plazoleta-service] [           main] .s.s.UserDetailsServiceAutoConfiguration : 
 
-Using generated security password: c247b64f-2ba2-4953-b9cf-cd88398d057f
+Using generated security password: 2759eec1-d94e-4c0a-a473-c625062a29b7
 
 This generated password is for development use only. Your security configuration must be updated before running your application in production.
 
-2026-03-02T08:56:51.506-05:00  INFO 36224 --- [plazoleta-service] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5621119d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@556d8c78, org.springframework.security.web.context.SecurityContextHolderFilter@7df09f55, org.springframework.security.web.header.HeaderWriterFilter@9cdceeb, org.springframework.web.filter.CorsFilter@3c79071e, org.springframework.security.web.authentication.logout.LogoutFilter@50fd7d94, com.plazoleta.plazoleta_service.infrastructure.security.filter.JwtAuthenticationFilter@798cb6d9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7f0952cf, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@70fe15d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5e147821, org.springframework.security.web.session.SessionManagementFilter@1a5e19fe, org.springframework.security.web.access.ExceptionTranslationFilter@3d73f2a1, org.springframework.security.web.access.intercept.AuthorizationFilter@674c9079]
-2026-03-02T08:56:53.194-05:00  INFO 36224 --- [plazoleta-service] [           main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
-2026-03-02T08:56:53.271-05:00  INFO 36224 --- [plazoleta-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path ''
-2026-03-02T08:56:54.290-05:00  INFO 36224 --- [plazoleta-service] [           main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
-2026-03-02T08:56:54.308-05:00  INFO 36224 --- [plazoleta-service] [           main] c.p.p.PlazoletaServiceApplication        : Started PlazoletaServiceApplication in 13.521 seconds (process running for 14.091)
-2026-03-02T08:56:55.779-05:00  INFO 36224 --- [plazoleta-service] [nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-03-02T08:56:55.784-05:00  INFO 36224 --- [plazoleta-service] [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-03-02T08:56:55.787-05:00  INFO 36224 --- [plazoleta-service] [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
-2026-03-02T08:56:55.804-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /
-2026-03-02T08:56:55.815-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2026-03-02T08:56:55.818-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-1] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
-2026-03-02T08:56:55.836-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /error
-2026-03-02T08:56:55.837-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2026-03-02T08:56:55.838-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-1] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
-2026-03-02T10:38:26.644-05:00  WARN 36224 --- [plazoleta-service] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=6m8s678ms749µs400ns).
-2026-03-02T10:45:59.499-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/index.html
-2026-03-02T10:45:59.507-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2026-03-02T10:45:59.521-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/index.html
-2026-03-02T10:45:59.829-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/index.html
-2026-03-02T10:45:59.830-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2026-03-02T10:45:59.830-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/index.html
-2026-03-02T10:45:59.919-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/swagger-ui.css
-2026-03-02T10:45:59.920-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2026-03-02T10:45:59.922-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/swagger-ui.css
-2026-03-02T10:45:59.927-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/index.css
-2026-03-02T10:45:59.928-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2026-03-02T10:45:59.929-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/index.css
-2026-03-02T10:45:59.951-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/swagger-ui-bundle.js
-2026-03-02T10:45:59.952-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2026-03-02T10:45:59.954-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/swagger-ui-bundle.js
-2026-03-02T10:45:59.961-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/swagger-ui.css
-2026-03-02T10:45:59.963-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2026-03-02T10:45:59.964-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/swagger-ui.css
-2026-03-02T10:45:59.965-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/index.css
-2026-03-02T10:45:59.968-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2026-03-02T10:45:59.970-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/index.css
-2026-03-02T10:45:59.975-05:00 DEBUG 36224 --- [plazoleta-service] [io-8081-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/swagger-ui-bundle.js
-2026-03-02T10:45:59.977-05:00 DEBUG 36224 --- [plazoleta-service] [io-8081-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2026-03-02T10:45:59.978-05:00 DEBUG 36224 --- [plazoleta-service] [io-8081-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/swagger-ui-bundle.js
-2026-03-02T10:46:00.008-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/swagger-ui-standalone-preset.js
-2026-03-02T10:46:00.011-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2026-03-02T10:46:00.013-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/swagger-ui-standalone-preset.js
-2026-03-02T10:46:00.014-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/swagger-initializer.js
-2026-03-02T10:46:00.016-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2026-03-02T10:46:00.016-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/swagger-initializer.js
-2026-03-02T10:46:00.030-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/swagger-ui-standalone-preset.js
-2026-03-02T10:46:00.033-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2026-03-02T10:46:00.035-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/swagger-ui-standalone-preset.js
-2026-03-02T10:46:00.164-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/swagger-initializer.js
-2026-03-02T10:46:00.165-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2026-03-02T10:46:00.165-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/swagger-initializer.js
-2026-03-02T10:46:00.354-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /v3/api-docs/swagger-config
-2026-03-02T10:46:00.354-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2026-03-02T10:46:00.355-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /v3/api-docs/swagger-config
-2026-03-02T10:46:00.436-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /v3/api-docs/swagger-config
-2026-03-02T10:46:00.437-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2026-03-02T10:46:00.437-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /v3/api-docs/swagger-config
-2026-03-02T10:46:00.525-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /v3/api-docs
-2026-03-02T10:46:00.525-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2026-03-02T10:46:00.526-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /v3/api-docs
-2026-03-02T10:46:00.564-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/index.html
-2026-03-02T10:46:00.565-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2026-03-02T10:46:00.566-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/index.html
-2026-03-02T10:46:00.639-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/swagger-ui.css
-2026-03-02T10:46:00.641-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2026-03-02T10:46:00.642-05:00 DEBUG 36224 --- [plazoleta-service] [io-8081-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/index.css
-2026-03-02T10:46:00.642-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/swagger-ui.css
-2026-03-02T10:46:00.643-05:00 DEBUG 36224 --- [plazoleta-service] [io-8081-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2026-03-02T10:46:00.643-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/swagger-ui-bundle.js
-2026-03-02T10:46:00.644-05:00 DEBUG 36224 --- [plazoleta-service] [io-8081-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/index.css
-2026-03-02T10:46:00.644-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2026-03-02T10:46:00.646-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/swagger-ui-bundle.js
-2026-03-02T10:46:00.668-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/swagger-ui-standalone-preset.js
-2026-03-02T10:46:00.668-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/swagger-initializer.js
-2026-03-02T10:46:00.669-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2026-03-02T10:46:00.669-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2026-03-02T10:46:00.669-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/swagger-ui-standalone-preset.js
-2026-03-02T10:46:00.669-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/swagger-initializer.js
-2026-03-02T10:46:00.824-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /v3/api-docs/swagger-config
-2026-03-02T10:46:00.825-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2026-03-02T10:46:00.826-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /v3/api-docs/swagger-config
-2026-03-02T10:46:01.757-05:00  INFO 36224 --- [plazoleta-service] [nio-8081-exec-8] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 1162 ms
-2026-03-02T10:46:01.791-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /v3/api-docs
-2026-03-02T10:46:01.792-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2026-03-02T10:46:01.792-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /v3/api-docs
-2026-03-02T10:46:01.801-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /v3/api-docs
-2026-03-02T10:46:01.802-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2026-03-02T10:46:01.803-05:00 DEBUG 36224 --- [plazoleta-service] [nio-8081-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /v3/api-docs
+2026-03-02T21:16:06.019-05:00  INFO 6748 --- [plazoleta-service] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@50fd7d94, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1377e395, org.springframework.security.web.context.SecurityContextHolderFilter@9cdceeb, org.springframework.security.web.header.HeaderWriterFilter@348523f2, org.springframework.web.filter.CorsFilter@6f3cf9ac, org.springframework.security.web.authentication.logout.LogoutFilter@1b3606e8, com.plazoleta.plazoleta_service.infrastructure.security.filter.JwtAuthenticationFilter@2fe2965c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7b5f886d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6e0d7be4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@33f17d3d, org.springframework.security.web.session.SessionManagementFilter@62765e11, org.springframework.security.web.access.ExceptionTranslationFilter@cd8e702, org.springframework.security.web.access.intercept.AuthorizationFilter@5d63d553]
+2026-03-02T21:16:07.459-05:00  INFO 6748 --- [plazoleta-service] [           main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-03-02T21:16:07.516-05:00  INFO 6748 --- [plazoleta-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path ''
+2026-03-02T21:16:08.538-05:00  INFO 6748 --- [plazoleta-service] [           main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-03-02T21:16:08.548-05:00  INFO 6748 --- [plazoleta-service] [           main] c.p.p.PlazoletaServiceApplication        : Started PlazoletaServiceApplication in 10.178 seconds (process running for 10.698)
+2026-03-02T21:16:10.051-05:00  INFO 6748 --- [plazoleta-service] [nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-02T21:16:10.052-05:00  INFO 6748 --- [plazoleta-service] [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-03-02T21:16:10.054-05:00  INFO 6748 --- [plazoleta-service] [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-03-02T21:16:10.067-05:00 DEBUG 6748 --- [plazoleta-service] [nio-8081-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /
+2026-03-02T21:16:10.075-05:00 DEBUG 6748 --- [plazoleta-service] [nio-8081-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-03-02T21:16:10.077-05:00 DEBUG 6748 --- [plazoleta-service] [nio-8081-exec-1] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-03-02T21:16:10.088-05:00 DEBUG 6748 --- [plazoleta-service] [nio-8081-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-03-02T21:16:10.089-05:00 DEBUG 6748 --- [plazoleta-service] [nio-8081-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-03-02T21:16:10.090-05:00 DEBUG 6748 --- [plazoleta-service] [nio-8081-exec-1] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-03-02T21:21:40.314-05:00 DEBUG 6748 --- [plazoleta-service] [nio-8081-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /restaurantes/propietario/6
+2026-03-02T21:21:40.386-05:00 DEBUG 6748 --- [plazoleta-service] [nio-8081-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /restaurantes/propietario/6
+2026-03-02T21:21:40.420-05:00 DEBUG 6748 --- [plazoleta-service] [nio-8081-exec-3] horizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.plazoleta.plazoleta_service.infrastructure.rest.controller.RestauranteController.consultarIdRestaurantePorPropietario(java.lang.Integer,org.springframework.security.core.Authentication); target is of class [com.plazoleta.plazoleta_service.infrastructure.rest.controller.RestauranteController]
+2026-03-02T21:21:40.430-05:00 DEBUG 6748 --- [plazoleta-service] [nio-8081-exec-3] horizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.plazoleta.plazoleta_service.infrastructure.rest.controller.RestauranteController.consultarIdRestaurantePorPropietario(java.lang.Integer,org.springframework.security.core.Authentication); target is of class [com.plazoleta.plazoleta_service.infrastructure.rest.controller.RestauranteController]
+Hibernate: 
+    select
+        re1_0.id,
+        re1_0.direccion,
+        re1_0.id_propietario,
+        re1_0.nit,
+        re1_0.nombre,
+        re1_0.telefono,
+        re1_0.url_logo 
+    from
+        restaurante re1_0 
+    where
+        re1_0.id_propietario=?
+2026-03-02T21:39:21.814-05:00  WARN 6748 --- [plazoleta-service] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m18s543ms263µs900ns).
+2026-03-03T08:45:19.666-05:00  WARN 6748 --- [plazoleta-service] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=10h36m495ms724µs200ns).
+2026-03-03T10:41:04.012-05:00  WARN 6748 --- [plazoleta-service] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h3m43s611ms560µs200ns).
+2026-03-03T14:14:18.318-05:00  WARN 6748 --- [plazoleta-service] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h11m43s43ms704µs100ns).
+2026-03-03T15:23:52.034-05:00  WARN 6748 --- [plazoleta-service] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m32s739ms587µs).

@@ -17,7 +17,7 @@ import com.plazoleta.usuarios_service.application.dto.LoginResult;
 import com.plazoleta.usuarios_service.application.useCase.LoginUsuarioUseCase;
 import com.plazoleta.usuarios_service.domain.exception.CredencialesInvalidasException;
 import com.plazoleta.usuarios_service.domain.exception.UsuarioNoEncontradoException;
-import com.plazoleta.usuarios_service.domain.model.Rol;
+import com.plazoleta.usuarios_service.domain.model.RolNombre;
 import com.plazoleta.usuarios_service.domain.model.Usuario;
 import com.plazoleta.usuarios_service.domain.puertosIn.IPasswordEncoderPort;
 import com.plazoleta.usuarios_service.domain.puertosIn.IUsuarioPersistencePort;
@@ -40,7 +40,7 @@ class LoginUsuarioUseCaseTest {
         usuario.setId(1);
         usuario.setCorreo("test@mail.com");
         usuario.setPassword("hash");
-        usuario.setRol(new Rol(2, Rol.PROPIETARIO, null));
+        usuario.setRol(RolNombre.PROPIETARIO);
 
         when(usuarioPersistencePort.findByCorreo("test@mail.com")).thenReturn(Optional.of(usuario));
         when(passwordEncoderPort.matches("1234", "hash")).thenReturn(true);

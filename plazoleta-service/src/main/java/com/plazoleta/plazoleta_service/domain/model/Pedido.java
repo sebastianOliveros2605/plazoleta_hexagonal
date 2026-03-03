@@ -18,5 +18,6 @@ public class Pedido {
     private List<DetallePedido> detallePedido;
     private Date fechaEntrega;
     private String pinSeguridad;
+    private Date pinExpiracion;
 
 }

@@ -27,6 +27,6 @@ public class LoginUsuarioUseCase {
         return new LoginResult(
                 usuario.getId(),
                 usuario.getCorreo(),
-                usuario.getRol().getNombre());
+                usuario.getRol().name());
     }
 }

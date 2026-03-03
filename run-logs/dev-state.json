@@ -2,28 +2,28 @@
     "services":  [
                      {
                          "stdout":  "C:\\Users\\sebas\\OneDrive\\Escritorio\\proyecto-plazoleta\\run-logs\\usuarios-service.log",
-                         "pid":  33524,
+                         "pid":  39368,
                          "name":  "usuarios-service",
                          "stderr":  "C:\\Users\\sebas\\OneDrive\\Escritorio\\proyecto-plazoleta\\run-logs\\usuarios-service.err.log"
                      },
                      {
                          "stdout":  "C:\\Users\\sebas\\OneDrive\\Escritorio\\proyecto-plazoleta\\run-logs\\plazoleta-service.log",
-                         "pid":  36784,
+                         "pid":  36236,
                          "name":  "plazoleta-service",
                          "stderr":  "C:\\Users\\sebas\\OneDrive\\Escritorio\\proyecto-plazoleta\\run-logs\\plazoleta-service.err.log"
                      },
                      {
                          "stdout":  "C:\\Users\\sebas\\OneDrive\\Escritorio\\proyecto-plazoleta\\run-logs\\trazabilidad_service.log",
-                         "pid":  40304,
+                         "pid":  40564,
                          "name":  "trazabilidad_service",
                          "stderr":  "C:\\Users\\sebas\\OneDrive\\Escritorio\\proyecto-plazoleta\\run-logs\\trazabilidad_service.err.log"
                      },
                      {
                          "stdout":  "C:\\Users\\sebas\\OneDrive\\Escritorio\\proyecto-plazoleta\\run-logs\\notificaciones_service.log",
-                         "pid":  16300,
+                         "pid":  33260,
                          "name":  "notificaciones_service",
                          "stderr":  "C:\\Users\\sebas\\OneDrive\\Escritorio\\proyecto-plazoleta\\run-logs\\notificaciones_service.err.log"
                      }
                  ],
-    "startedAt":  "2026-03-02T08:57:28"
+    "startedAt":  "2026-03-02T21:16:34"
 }

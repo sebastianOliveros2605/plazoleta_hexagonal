@@ -13,11 +13,10 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 
 import com.plazoleta.usuarios_service.application.dto.LoginCommand;
+import com.plazoleta.usuarios_service.application.dto.LoginResult;
 import com.plazoleta.usuarios_service.application.useCase.ConsultarUsuarioUseCase;
-import com.plazoleta.usuarios_service.application.useCase.CrearEmpleadoUseCase;
 import com.plazoleta.usuarios_service.application.useCase.CrearUsuarioUseCase;
 import com.plazoleta.usuarios_service.application.useCase.LoginUsuarioUseCase;
-import com.plazoleta.usuarios_service.domain.model.Rol;
 import com.plazoleta.usuarios_service.domain.model.Usuario;
 import com.plazoleta.usuarios_service.infrastructure.input.rest.dto.LoginRequest;
 import com.plazoleta.usuarios_service.infrastructure.input.rest.dto.LoginResponse;
@@ -39,7 +38,6 @@ import lombok.RequiredArgsConstructor;
 public class UsuarioController {
 
     private final CrearUsuarioUseCase crearUsuarioUseCase;
-    private final CrearEmpleadoUseCase crearEmpleadoUseCase;
     private final LoginUsuarioUseCase loginUsuarioUseCase;
     private final ConsultarUsuarioUseCase consultarUsuarioUseCase;
     private final UsuarioDTOMapper usuarioDTOMapper;
@@ -55,8 +53,8 @@ public class UsuarioController {
     public void crearPropietario(
             @Valid @RequestBody UsuarioDTO request) {
 
-        Usuario usuario = usuarioDTOMapper.toUsuarioDomain(request, new Rol(Rol.PROPIETARIO_ID, Rol.PROPIETARIO, null));
-        crearUsuarioUseCase.crearUsuario(usuario);
+        Usuario usuario = usuarioDTOMapper.toUsuarioDomain(request);
+        crearUsuarioUseCase.crearPropietario(usuario);
     }
 
     @Operation(
@@ -70,9 +68,9 @@ public class UsuarioController {
             @Valid @RequestBody UsuarioDTO request,
             Authentication authentication) {
 
-        Usuario usuario = usuarioDTOMapper.toUsuarioDomain(request, new Rol(Rol.EMPLEADO_ID, Rol.EMPLEADO, null));
+        Usuario usuario = usuarioDTOMapper.toUsuarioDomain(request);
         Integer idPropietarioAutenticado = Integer.parseInt(authentication.getName());
-        crearEmpleadoUseCase.crearEmpleado(usuario, idPropietarioAutenticado);
+        crearUsuarioUseCase.crearEmpleado(usuario, idPropietarioAutenticado);
     }
 
     @Operation(summary = "Crear cliente", description = "Crea un usuario con rol CLIENTE.")
@@ -81,8 +79,8 @@ public class UsuarioController {
     public void crearCliente(
             @Valid @RequestBody UsuarioDTO request) {
 
-        Usuario usuario = usuarioDTOMapper.toUsuarioDomain(request, new Rol(Rol.CLIENTE_ID, Rol.CLIENTE, null));
-        crearUsuarioUseCase.crearUsuario(usuario);
+        Usuario usuario = usuarioDTOMapper.toUsuarioDomain(request);
+        crearUsuarioUseCase.crearCliente(usuario);
     }
 
     @Operation(
@@ -95,8 +93,8 @@ public class UsuarioController {
     public void crearAdmin(
             @Valid @RequestBody UsuarioDTO request) {
 
-        Usuario usuario = usuarioDTOMapper.toUsuarioDomain(request, new Rol(Rol.ADMIN_ID, Rol.ADMIN, null));
-        crearUsuarioUseCase.crearUsuario(usuario);
+        Usuario usuario = usuarioDTOMapper.toUsuarioDomain(request);
+        crearUsuarioUseCase.crearAdmin(usuario);
     }
 
     @Operation(summary = "Login", description = "Autentica un usuario y retorna el token JWT.")
@@ -104,7 +102,7 @@ public class UsuarioController {
     public ResponseEntity<LoginResponse> login(
             @Valid @RequestBody LoginRequest request) {
 
-        var authResult = loginUsuarioUseCase.login(new LoginCommand(request.correo(), request.password()));
+        LoginResult authResult = loginUsuarioUseCase.login(new LoginCommand(request.correo(), request.password()));
         String token = jwtService.generateToken(authResult.idUsuario(), authResult.correo(), authResult.rol());
         return ResponseEntity.ok(new LoginResponse(token));
     }
@@ -126,7 +124,7 @@ public class UsuarioController {
     @GetMapping("consultarRol/{idUsuario}")
     public ResponseEntity<String> consultarRolUsuario(@PathVariable Integer idUsuario) {
         Usuario usuario = consultarUsuarioUseCase.consultarPorId(idUsuario);
-        return ResponseEntity.ok(usuario.getRol().getNombre());
+        return ResponseEntity.ok(usuario.getRol().name());
     }
 
     @Operation(

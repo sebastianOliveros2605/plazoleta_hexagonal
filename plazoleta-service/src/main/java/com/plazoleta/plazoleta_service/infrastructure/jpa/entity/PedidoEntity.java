@@ -31,4 +31,6 @@ public class PedidoEntity {
     private Date fechaEntrega;
     @Column(name = "pin_seguridad")
     private String pinSeguridad;
+    @Column(name = "pin_expiracion")
+    private Date pinExpiracion;
 }

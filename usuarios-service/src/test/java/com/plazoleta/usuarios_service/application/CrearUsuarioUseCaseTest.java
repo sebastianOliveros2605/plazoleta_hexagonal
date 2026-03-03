@@ -1,7 +1,6 @@
 package com.plazoleta.usuarios_service.application;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.never;
@@ -22,9 +21,12 @@ import com.plazoleta.usuarios_service.application.useCase.CrearUsuarioUseCase;
 import com.plazoleta.usuarios_service.domain.exception.DatosInvalidosException;
 import com.plazoleta.usuarios_service.domain.exception.EmailDuplicadoException;
 import com.plazoleta.usuarios_service.domain.exception.MenorDeEdadException;
-import com.plazoleta.usuarios_service.domain.model.Rol;
+import com.plazoleta.usuarios_service.domain.model.RolNombre;
 import com.plazoleta.usuarios_service.domain.model.Usuario;
+import com.plazoleta.usuarios_service.domain.puertosIn.IEmpleadoRestaurantePersistencePort;
 import com.plazoleta.usuarios_service.domain.puertosIn.IPasswordEncoderPort;
+import com.plazoleta.usuarios_service.domain.puertosIn.IRestauranteClientePort;
+import com.plazoleta.usuarios_service.domain.puertosIn.IRolPersistencePort;
 import com.plazoleta.usuarios_service.domain.puertosIn.IUsuarioPersistencePort;
 
 @ExtendWith(MockitoExtension.class)
@@ -36,36 +38,48 @@ class CrearUsuarioUseCaseTest {
     @Mock
     private IPasswordEncoderPort passwordEncoderPort;
 
+    @Mock
+    private IRolPersistencePort rolPersistencePort;
+
+    @Mock
+    private IRestauranteClientePort restauranteClientePort;
+
+    @Mock
+    private IEmpleadoRestaurantePersistencePort empleadoRestaurantePersistencePort;
+
     @InjectMocks
     private CrearUsuarioUseCase crearUsuarioUseCase;
 
     @Test
     void crearPropietario_CuandoCumpleCriterios_DeberiaPersistirConClaveEncriptada() {
         Usuario usuario = buildPropietarioAdulto();
+        when(rolPersistencePort.findIdByNombre(RolNombre.PROPIETARIO.name())).thenReturn(java.util.Optional.of(2));
         when(usuarioRepositoryPort.existsByCorreo(usuario.getCorreo())).thenReturn(false);
         when(passwordEncoderPort.encode("1234")).thenReturn("bcrypt-hash");
         when(usuarioRepositoryPort.save(any(Usuario.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
-        Usuario resultado = crearUsuarioUseCase.crearUsuario(usuario);
+        Usuario resultado = crearUsuarioUseCase.crearPropietario(usuario);
 
         assertEquals("bcrypt-hash", resultado.getPassword());
-        assertEquals(Rol.PROPIETARIO, resultado.getRol().getNombre());
+        assertEquals(RolNombre.PROPIETARIO, resultado.getRol());
         verify(usuarioRepositoryPort).save(usuario);
     }
 
     @Test
     void crearPropietario_CuandoCamposFormatoInvalidos_DeberiaFallar() {
+        when(rolPersistencePort.findIdByNombre(RolNombre.PROPIETARIO.name())).thenReturn(java.util.Optional.of(2));
+
         Usuario celularInvalido = buildPropietarioAdulto();
         celularInvalido.setCelular("abc-123");
-        assertThrows(DatosInvalidosException.class, () -> crearUsuarioUseCase.crearUsuario(celularInvalido));
+        assertThrows(DatosInvalidosException.class, () -> crearUsuarioUseCase.crearPropietario(celularInvalido));
 
         Usuario correoInvalido = buildPropietarioAdulto();
         correoInvalido.setCorreo("correo-invalido");
-        assertThrows(DatosInvalidosException.class, () -> crearUsuarioUseCase.crearUsuario(correoInvalido));
+        assertThrows(DatosInvalidosException.class, () -> crearUsuarioUseCase.crearPropietario(correoInvalido));
 
         Usuario campoObligatorioFaltante = buildPropietarioAdulto();
         campoObligatorioFaltante.setNombre(" ");
-        assertThrows(DatosInvalidosException.class, () -> crearUsuarioUseCase.crearUsuario(campoObligatorioFaltante));
+        assertThrows(DatosInvalidosException.class, () -> crearUsuarioUseCase.crearPropietario(campoObligatorioFaltante));
 
         verify(usuarioRepositoryPort, never()).save(any(Usuario.class));
     }
@@ -74,11 +88,12 @@ class CrearUsuarioUseCaseTest {
     void crearPropietario_CuandoEsMenorDeEdad_DeberiaFallar() {
         Usuario usuario = buildPropietarioAdulto();
         usuario.setFechaNacimiento(toDate(LocalDate.now().minusYears(17)));
+        when(rolPersistencePort.findIdByNombre(RolNombre.PROPIETARIO.name())).thenReturn(java.util.Optional.of(2));
         when(usuarioRepositoryPort.existsByCorreo(usuario.getCorreo())).thenReturn(false);
 
         MenorDeEdadException exception = assertThrows(
                 MenorDeEdadException.class,
-                () -> crearUsuarioUseCase.crearUsuario(usuario));
+                () -> crearUsuarioUseCase.crearPropietario(usuario));
 
         assertEquals("El usuario debe ser mayor de edad", exception.getMessage());
         verify(usuarioRepositoryPort, never()).save(any(Usuario.class));
@@ -87,11 +102,12 @@ class CrearUsuarioUseCaseTest {
     @Test
     void crearUsuario_CuandoCorreoYaExiste_DeberiaFallar() {
         Usuario usuario = buildPropietarioAdulto();
+        when(rolPersistencePort.findIdByNombre(RolNombre.PROPIETARIO.name())).thenReturn(java.util.Optional.of(2));
         when(usuarioRepositoryPort.existsByCorreo(usuario.getCorreo())).thenReturn(true);
 
         EmailDuplicadoException exception = assertThrows(
                 EmailDuplicadoException.class,
-                () -> crearUsuarioUseCase.crearUsuario(usuario));
+                () -> crearUsuarioUseCase.crearPropietario(usuario));
 
         assertEquals("El correo ya esta registrado", exception.getMessage());
         verify(passwordEncoderPort, never()).encode(any(String.class));
@@ -99,44 +115,61 @@ class CrearUsuarioUseCaseTest {
     }
 
     @Test
-    void crearUsuario_CuandoRolNoEsObligadoMayorEdad_DeberiaPersistir() {
+    void crearCliente_CuandoEsMenorDeEdad_DeberiaPersistir() {
         Usuario usuario = buildClienteMenorEdad();
-        usuario.setIdRestaurante(55L);
+        when(rolPersistencePort.findIdByNombre(RolNombre.CLIENTE.name())).thenReturn(java.util.Optional.of(4));
         when(usuarioRepositoryPort.existsByCorreo(usuario.getCorreo())).thenReturn(false);
         when(passwordEncoderPort.encode(usuario.getPassword())).thenReturn("bcrypt-hash");
         when(usuarioRepositoryPort.save(any(Usuario.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
-        Usuario resultado = crearUsuarioUseCase.crearUsuario(usuario);
+        Usuario resultado = crearUsuarioUseCase.crearCliente(usuario);
 
-        assertEquals("CLIENTE", resultado.getRol().getNombre());
-        assertNull(resultado.getIdRestaurante());
+        assertEquals(RolNombre.CLIENTE, resultado.getRol());
         assertEquals("bcrypt-hash", resultado.getPassword());
         verify(usuarioRepositoryPort).save(usuario);
     }
 
     @Test
-    void crearUsuario_CuandoEmpleadoSinRestaurante_DeberiaFallar() {
+    void crearEmpleado_CuandoPropietarioTieneRestaurante_DeberiaPersistirYGuardarRelacion() {
         Usuario usuario = buildEmpleado();
-        usuario.setIdRestaurante(null);
+        when(rolPersistencePort.findIdByNombre(RolNombre.EMPLEADO.name())).thenReturn(java.util.Optional.of(3));
+        when(restauranteClientePort.consultarIdRestaurantePorPropietario(12)).thenReturn(99L);
+        when(usuarioRepositoryPort.existsByCorreo(usuario.getCorreo())).thenReturn(false);
+        when(passwordEncoderPort.encode(usuario.getPassword())).thenReturn("bcrypt-hash");
+        when(usuarioRepositoryPort.save(any(Usuario.class))).thenAnswer(invocation -> {
+            Usuario u = invocation.getArgument(0);
+            u.setId(10);
+            return u;
+        });
+
+        Usuario resultado = crearUsuarioUseCase.crearEmpleado(usuario, 12);
+
+        assertEquals(RolNombre.EMPLEADO, resultado.getRol());
+        verify(empleadoRestaurantePersistencePort).saveOrUpdate(10, 99L);
+    }
+
+    @Test
+    void crearEmpleado_CuandoNoHayRestaurante_DeberiaFallar() {
+        Usuario usuario = buildEmpleado();
+        when(rolPersistencePort.findIdByNombre(RolNombre.EMPLEADO.name())).thenReturn(java.util.Optional.of(3));
+        when(restauranteClientePort.consultarIdRestaurantePorPropietario(12)).thenReturn(null);
+        when(usuarioRepositoryPort.existsByCorreo(usuario.getCorreo())).thenReturn(false);
 
         DatosInvalidosException exception = assertThrows(
                 DatosInvalidosException.class,
-                () -> crearUsuarioUseCase.crearUsuario(usuario));
+                () -> crearUsuarioUseCase.crearEmpleado(usuario, 12));
 
         assertEquals("El empleado debe quedar asociado a un restaurante", exception.getMessage());
         verify(usuarioRepositoryPort, never()).save(any(Usuario.class));
     }
 
     @Test
-    void crearUsuario_CuandoRolInvalido_DeberiaFallar() {
-        Usuario rolSinId = buildPropietarioAdulto();
-        rolSinId.setRol(new Rol(null, Rol.PROPIETARIO, null));
-        assertThrows(DatosInvalidosException.class, () -> crearUsuarioUseCase.crearUsuario(rolSinId));
+    void crearUsuario_CuandoRolNoExisteEnPersistencia_DeberiaFallar() {
+        Usuario usuario = buildPropietarioAdulto();
+        when(rolPersistencePort.findIdByNombre(RolNombre.PROPIETARIO.name())).thenReturn(java.util.Optional.empty());
 
-        Usuario rolSinNombre = buildPropietarioAdulto();
-        rolSinNombre.setRol(new Rol(Rol.PROPIETARIO_ID, " ", null));
-        assertThrows(DatosInvalidosException.class, () -> crearUsuarioUseCase.crearUsuario(rolSinNombre));
-
+        assertThrows(com.plazoleta.usuarios_service.domain.exception.RolNoEncontradoException.class,
+                () -> crearUsuarioUseCase.crearPropietario(usuario));
         verify(usuarioRepositoryPort, never()).save(any(Usuario.class));
     }
 
@@ -149,7 +182,6 @@ class CrearUsuarioUseCaseTest {
         usuario.setFechaNacimiento(toDate(LocalDate.now().minusYears(25)));
         usuario.setCorreo("sebastian@mail.com");
         usuario.setPassword("1234");
-        usuario.setRol(new Rol(Rol.PROPIETARIO_ID, Rol.PROPIETARIO, null));
         return usuario;
     }
 
@@ -162,7 +194,6 @@ class CrearUsuarioUseCaseTest {
         usuario.setFechaNacimiento(toDate(LocalDate.now().minusYears(17)));
         usuario.setCorreo("ana@mail.com");
         usuario.setPassword("abc123");
-        usuario.setRol(new Rol(Rol.CLIENTE_ID, Rol.CLIENTE, null));
         return usuario;
     }
 
@@ -175,7 +206,6 @@ class CrearUsuarioUseCaseTest {
         usuario.setFechaNacimiento(toDate(LocalDate.now().minusYears(22)));
         usuario.setCorreo("carlos@mail.com");
         usuario.setPassword("pass123");
-        usuario.setRol(new Rol(Rol.EMPLEADO_ID, Rol.EMPLEADO, null));
         return usuario;
     }
 

@@ -62,7 +62,7 @@ public class GestionarEstadoPedidoService implements IGestionarEstadoPedidoUseCa
             throw new TransicionEstadoNoPermitidaException("Solo se puede marcar ENTREGADO un pedido en estado LISTO.");
         }
 
-        validarPinSeguridad(pinSeguridad, pedido.getPinSeguridad());
+        validarPinSeguridad(pinSeguridad, pedido.getPinSeguridad(), pedido.getPinExpiracion());
         cambiarEstadoYRegistrar(pedido, EstadoPedidoEnum.ENTREGADO, idEmpleado, correoEmpleado);
     }
 
@@ -115,11 +115,13 @@ public class GestionarEstadoPedidoService implements IGestionarEstadoPedidoUseCa
 
         if (nuevoEstado == EstadoPedidoEnum.LISTO) {
             pedido.setPinSeguridad(generarPinSeguridad());
+            pedido.setPinExpiracion(calcularFechaExpiracionPin());
         }
 
         if (nuevoEstado == EstadoPedidoEnum.ENTREGADO || nuevoEstado == EstadoPedidoEnum.CANCELADO) {
             pedido.setFechaEntrega(new Date());
             pedido.setPinSeguridad(null);
+            pedido.setPinExpiracion(null);
         }
 
         Pedido actualizado = pedidoRepositoryPort.guardar(pedido);
@@ -180,11 +182,24 @@ public class GestionarEstadoPedidoService implements IGestionarEstadoPedidoUseCa
         }
     }
 
+    private void validarPinSeguridad(String pinIngresado, String pinGuardado, Date pinExpiracion) {
+        if (pinExpiracion == null || pinExpiracion.before(new Date())) {
+            throw new TransicionEstadoNoPermitidaException(PedidoDomainConstants.MENSAJE_PIN_EXPIRADO);
+        }
+        validarPinSeguridad(pinIngresado, pinGuardado);
+    }
+
     private String generarPinSeguridad() {
         int longitud = PedidoDomainConstants.LONGITUD_PIN_SEGURIDAD;
         int min = (int) Math.pow(10, longitud - 1);
         int max = (int) Math.pow(10, longitud) - 1;
         int pin = ThreadLocalRandom.current().nextInt(min, max + 1);
         return String.valueOf(pin);
+    }
+
+    private Date calcularFechaExpiracionPin() {
+        long ahora = System.currentTimeMillis();
+        long expiracion = ahora + (PedidoDomainConstants.MINUTOS_EXPIRACION_PIN_SEGURIDAD * 60L * 1000L);
+        return new Date(expiracion);
     }
 }

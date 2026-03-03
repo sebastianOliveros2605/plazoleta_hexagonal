@@ -37,8 +37,6 @@ public class UsuarioEntity {
     private String correo;
 
     private String password;
-    @Column(name = "id_restaurante", nullable = true)
-    private Long idRestaurante;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "rol_id", nullable = false)

@@ -27,8 +27,8 @@ class DomainExceptionsTest {
     }
 
     @Test
-    void rolNoEncontradoException_DeberiaIncluirId() {
-        assertEquals("Rol no encontrado para id: 8", new RolNoEncontradoException(8).getMessage());
+    void rolNoEncontradoException_DeberiaIncluirNombre() {
+        assertEquals("Rol no encontrado para nombre: ADMIN", new RolNoEncontradoException("ADMIN").getMessage());
     }
 
     @Test
@@ -36,4 +36,3 @@ class DomainExceptionsTest {
         assertEquals("Usuario no encontrado", new UsuarioNoEncontradoException().getMessage());
     }
 }
-

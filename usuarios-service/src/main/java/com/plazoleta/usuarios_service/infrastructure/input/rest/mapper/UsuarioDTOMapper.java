@@ -1,6 +1,5 @@
 package com.plazoleta.usuarios_service.infrastructure.input.rest.mapper;
 
-import com.plazoleta.usuarios_service.domain.model.Rol;
 import com.plazoleta.usuarios_service.domain.model.Usuario;
 import com.plazoleta.usuarios_service.infrastructure.input.rest.dto.UsuarioDTO;
 import org.mapstruct.Mapper;
@@ -18,11 +17,12 @@ public interface UsuarioDTOMapper {
             @Mapping(target = "fechaNacimiento", source = "request.fechaNacimiento"),
             @Mapping(target = "correo", source = "request.correo"),
             @Mapping(target = "password", source = "request.password"),
-            @Mapping(target = "idRestaurante", ignore = true),
-            @Mapping(target = "rol", source = "rol")
+            @Mapping(target = "rolId", ignore = true),
+            @Mapping(target = "rol", ignore = true)
     })
-    Usuario toUsuarioDomain(UsuarioDTO request, Rol rol);
+    Usuario toUsuarioDomain(UsuarioDTO request);
 
-    @Mapping(target = "rol", source = "rol.nombre")
+    @Mapping(target = "rol", expression = "java(usuario.getRol() != null ? usuario.getRol().name() : null)")
+    @Mapping(target = "idRestaurante", ignore = true)
     UsuarioDTO toDTO(Usuario usuario);
 }

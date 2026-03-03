@@ -19,6 +19,7 @@ public interface PedidoRestMapper {
     @Mapping(target = "fechaEntrega", ignore = true)
     @Mapping(target = "idEmpleado", ignore = true)
     @Mapping(target = "pinSeguridad", ignore = true)
+    @Mapping(target = "pinExpiracion", ignore = true)
     @Mapping(target = "detallePedido", source = "detallePedido")
     Pedido toDomain(PedidoRequestDTO request);
 
